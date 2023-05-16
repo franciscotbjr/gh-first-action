@@ -40,3 +40,4 @@ jobs:
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: display-results
+          display-graph: false

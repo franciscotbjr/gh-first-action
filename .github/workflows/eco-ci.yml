@@ -11,7 +11,7 @@ jobs:
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: start-measurement
-          display-graph: false
+          #display-graph: false
 
       - name: 'Checkout repository'
         uses: actions/checkout@v3
@@ -24,6 +24,7 @@ jobs:
         with:
           task: get-measurement
           label: 'repo checkout'
+          send-data: false
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -35,9 +36,12 @@ jobs:
         with:
           task: get-measurement
           label: 'python setup'
+          send-data: false
 
       - name: Show Energy Results
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: display-results
-          display-graph: false
+          send-data: false
+          #display-graph: false
+          

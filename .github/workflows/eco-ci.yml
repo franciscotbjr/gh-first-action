@@ -3,6 +3,7 @@ run-name: Scheduled - DEV Branch
 on: workflow_dispatch
 jobs:
   run-tests:
+    name: Teste
     runs-on: ubuntu-latest
     permissions:
         actions: read

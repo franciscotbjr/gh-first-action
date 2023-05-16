@@ -11,6 +11,7 @@ jobs:
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: start-measurement
+          display-graph: false
 
       - name: 'Checkout repository'
         uses: actions/checkout@v3

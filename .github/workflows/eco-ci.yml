@@ -28,7 +28,7 @@ jobs:
         with:
           task: get-measurement
           label: 'repo checkout'
-          send-data: false
+          send-data: true
 
       - name: setup python
         id: step4
@@ -42,14 +42,14 @@ jobs:
         with:
           task: get-measurement
           label: 'python setup'
-          send-data: false
+          send-data: true
 
       - name: Create Energy Results
         id: step6
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: display-results
-          send-data: false
+          send-data: true
           #display-graph: false
           
       - name: Print JSON Energy Results

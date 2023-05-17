@@ -9,18 +9,21 @@ jobs:
         actions: read
     steps:
       - name: Initialize Energy Estimation
+        id: step1
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: start-measurement
           #display-graph: false
 
       - name: 'Checkout repository'
+        id: step2
         uses: actions/checkout@v3
         with:
           ref: 'main'
           submodules: 'true'
 
       - name: Checkout Repo Measurement
+        id: step3
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: get-measurement
@@ -28,11 +31,13 @@ jobs:
           send-data: false
 
       - name: setup python
+        id: step4
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
     
       - name: Setup Python Measurment
+        id: step5
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: get-measurement
@@ -40,6 +45,7 @@ jobs:
           send-data: false
 
       - name: Show Energy Results
+        id: step6
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: display-results
@@ -47,5 +53,6 @@ jobs:
           #display-graph: false
           
       - name: Print goodbye
-        run: echo "${{ toJSON(GITHUB_OUTPUT) }}"
+        id: step7
+        run: echo "${{ toJSON(steps.step6.outputs.data-total-json) }}"
           

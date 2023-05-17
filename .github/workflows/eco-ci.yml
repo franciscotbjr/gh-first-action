@@ -44,7 +44,7 @@ jobs:
           label: 'python setup'
           send-data: false
 
-      - name: Show Energy Results
+      - name: Create Energy Results
         id: step6
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
@@ -52,7 +52,7 @@ jobs:
           send-data: false
           #display-graph: false
           
-      - name: Print goodbye
+      - name: Print JSON Energy Results
         id: step7
         run: echo "${{ toJSON(steps.step6.outputs.data-total-json) }}"
           

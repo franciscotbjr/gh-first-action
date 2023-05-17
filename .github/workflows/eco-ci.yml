@@ -46,3 +46,6 @@ jobs:
           send-data: false
           #display-graph: false
           
+      - name: Print goodbye
+        run: echo "${{ toJSON(GITHUB_OUTPUT) }}"
+          

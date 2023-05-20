@@ -8,7 +8,7 @@ jobs:
     permissions:
         actions: read
     outputs:
-      energy-estimation: ${{ toJSON(steps.step9.outputs.data-total-json) }}
+      energy-estimation: ${{ toJSON(steps.step6.outputs.data-total-json) }}
     steps:
       - name: Initialize Energy Estimation
         id: step1
@@ -17,41 +17,22 @@ jobs:
           task: start-measurement
           #display-graph: false
 
-      #- name: Checkout Repo Measurement
-      #  id: step2
-      #  uses: green-coding-berlin/eco-ci-energy-estimation@v1
-      #  with:
-      #    task: get-measurement
-      #    label: 'repo checkout'
-      #    send-data: false
+      - name: Checkout Repo Measurement
+        id: step3
+        uses: green-coding-berlin/eco-ci-energy-estimation@v1
+        with:
+          task: get-measurement
+          label: 'repo checkout'
+          send-data: false
 
       - name: setup python
-        id: step3
+        id: step4
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Install NodeJS
-        id: step5
-        uses: actions/setup-node@v3
-        with: 
-          node-version: 18
-      - name: 'Checkout repository'
-        id: step4
-        uses: actions/checkout@v3
-        with:
-          ref: 'main'
-          submodules: 'true'
-      - name: Install dependencies
-        id: step6
-        run: npm install
-      - name: Run tests
-        id: step7
-        run: npm test
-
     
       - name: Setup Python Measurment
-        id: step8
+        id: step5
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: get-measurement
@@ -59,7 +40,7 @@ jobs:
           send-data: false
 
       - name: Create Energy Results
-        id: step9
+        id: step6
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
         with:
           task: display-results

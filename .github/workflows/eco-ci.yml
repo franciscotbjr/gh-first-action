@@ -17,13 +17,13 @@ jobs:
           task: start-measurement
           #display-graph: false
 
-      - name: Checkout Repo Measurement
-        id: step2
-        uses: green-coding-berlin/eco-ci-energy-estimation@v1
-        with:
-          task: get-measurement
-          label: 'repo checkout'
-          send-data: false
+      #- name: Checkout Repo Measurement
+      #  id: step2
+      #  uses: green-coding-berlin/eco-ci-energy-estimation@v1
+      #  with:
+      #    task: get-measurement
+      #    label: 'repo checkout'
+      #    send-data: false
 
       - name: setup python
         id: step3
@@ -31,17 +31,17 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Install NodeJS
+        id: step5
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
       - name: 'Checkout repository'
         id: step4
         uses: actions/checkout@v3
         with:
           ref: 'main'
           submodules: 'true'
-      - name: Install NodeJS
-        id: step5
-        uses: actions/setup-node@v3
-        with: 
-          node-version: 18
       - name: Install dependencies
         id: step6
         run: npm install

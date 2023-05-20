@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
         actions: read
+    outputs:
+      energy-estimation: ${{ toJSON(steps.step6.outputs.data-total-json) }}
     steps:
       - name: Initialize Energy Estimation
         id: step1
@@ -52,7 +54,11 @@ jobs:
           send-data: false
           #display-graph: false
           
+  send-ci-energy-estimation:
+    name: Send Ci Energy Estimation
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps: 
       - name: Print JSON Energy Results
         id: step7
-        run: echo "${{ toJSON(steps.step6.outputs.data-total-json) }}"
-          
+        run: echo "${{ toJSON( needs.run-tests.outputs.energy-estimation ) }}"

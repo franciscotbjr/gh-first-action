@@ -17,13 +17,13 @@ jobs:
           task: start-measurement
           #display-graph: false
 
-      - name: Checkout Repo Measurement
-        id: step3
-        uses: green-coding-berlin/eco-ci-energy-estimation@v1
-        with:
-          task: get-measurement
-          label: 'repo checkout'
-          send-data: false
+      #- name: Checkout Repo Measurement
+      #  id: step3
+      #  uses: green-coding-berlin/eco-ci-energy-estimation@v1
+      #  with:
+      #    task: get-measurement
+      #    label: 'repo checkout'
+      #    send-data: false
 
       - name: setup python
         id: step4

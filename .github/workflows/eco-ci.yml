@@ -17,13 +17,6 @@ jobs:
           task: start-measurement
           #display-graph: false
 
-      - name: 'Checkout repository'
-        id: step2
-        uses: actions/checkout@v3
-        with:
-          ref: 'main'
-          submodules: 'true'
-
       - name: Checkout Repo Measurement
         id: step3
         uses: green-coding-berlin/eco-ci-energy-estimation@v1
@@ -37,6 +30,22 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+
+      - name: 'Checkout repository'
+        id: step2
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+          submodules: 'true'
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+
     
       - name: Setup Python Measurment
         id: step5
